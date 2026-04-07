@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -12,7 +12,7 @@ const schema = yup.object({
     .matches(/^\d+$/, "Тільки цифри")
     .min(10, "Мінімум 10 цифр")
     .max(14, "Максимум 14 цифр"),
-  comment: yup.string().required("Опишіть суть проблеми"),
+    comment: yup.string().optional().default(''),
 });
 
 type FormData = yup.InferType<typeof schema>;
@@ -25,8 +25,6 @@ interface Props {
 export default function ConsultationForm({ formId, className }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [fileName, setFileName] = useState("");
-  const fileRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -40,15 +38,12 @@ export default function ConsultationForm({ formId, className }: Props) {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const file = fileRef.current?.files?.[0];
       await sendEmail({
         name: data.name,
         phone: data.phone,
         comment: data.comment,
-        file,
       });
       reset();
-      setFileName("");
       setShowSuccess(true);
     } catch (e) {
       console.error("Failed to send email:", e);
@@ -61,7 +56,7 @@ export default function ConsultationForm({ formId, className }: Props) {
     <>
       <form id={formId} className={className} onSubmit={handleSubmit(onSubmit)}>
         {formId === "modal_form" && <p>
-          Вартість консультації <span>550 грн.</span> Якщо після консультації
+          Вартість консультації <span>1000 грн.</span> Якщо після консультації
           знадобляться додаткові послуги, то ця сума буде включено у вартість
           послуги.
         </p>}
@@ -86,30 +81,6 @@ export default function ConsultationForm({ formId, className }: Props) {
             <span className="error-log-show">{errors.comment.message}</span>
           )}
         </label>
-        <input
-          type="file"
-          accept="application/pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/*"
-          ref={fileRef}
-          style={{ display: "none" }}
-          id={`upload_${formId || "default"}`}
-          onChange={(e) => setFileName(e.target.files?.[0]?.name || "")}
-        />
-        <label
-          htmlFor={`upload_${formId || "default"}`}
-          data-after={fileName || "Прикріпити файл"}
-          style={{
-            display: "inline-block",
-            position: "relative",
-            width: "3em",
-            height: "3em",
-            background: "#C5232D url(/img/svg/pin-icon.svg) no-repeat center",
-            borderRadius: "50px",
-            color: "white",
-            padding: "0.5rem",
-            cursor: "pointer",
-            marginTop: "1rem",
-          }}
-        />
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Надсилається..." : "Надіслати"}
         </button>

@@ -13,7 +13,6 @@ export interface ConsultationFormData {
   name: string;
   phone: string;
   comment: string;
-  file?: File;
 }
 
 export interface Testimonial {
