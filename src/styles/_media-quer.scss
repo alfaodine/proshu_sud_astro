@@ -120,7 +120,7 @@
     .header__photo img { height: 95vh; }
     .header__menu li:not(:last-child) { padding-right: 2.5em; }
     .about-us__description { width: 50%; }
-    .about-us__video iframe { width: 100%; }
+    .about-us__video iframe, .about-us__video.youtube-facade { width: 100%; }
 }
 @media (max-width: 992px) and (min-width: 577px) {
     .stats__title span { font-size: 22px; }
@@ -308,7 +308,7 @@
                 margin: 0px 3% 15px 5%;
             }
             & button{
-                margin: 1em 0 0 5%;
+                margin: 1em 0 0 9%;
             }
         }
     }

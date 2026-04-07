@@ -12,11 +12,8 @@ const toBase64 = (file: File): Promise<string> => {
 export async function sendEmail(data: {
   name: string;
   phone: string;
-  comment: string;
-  file?: File;
+  comment?: string;
 }): Promise<void> {
-  const bs64 = data.file ? await toBase64(data.file) : '';
-  const fileName = data.file ? data.file.name : '';
 
   await fetch(EMAIL_ENDPOINT, {
     mode: 'no-cors',
@@ -28,10 +25,8 @@ export async function sendEmail(data: {
     body: JSON.stringify({
       senderName: 'yatskevych.andrii@gmail.com',
       senderEmail: 'ellada74@gmail.com',
-      message: `name: ${data.name}, tel:${data.phone}, msg: ${data.comment}`,
-      base64Data: bs64,
+      message: `name: ${data.name}, tel:${data.phone}, msg: ${data.comment || ''}`,
       date: new Date(),
-      fileName: fileName,
       subject: `Заявка от ${data.name}`,
     }),
   });
