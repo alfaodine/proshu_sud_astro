@@ -27,7 +27,7 @@ import { faqItems } from "../data/faq";
         </button>
       </div>
       <div class="header__photo">
-        <img src="/img/header-photo1x.png" alt="Охтень Аліна Андріївна" />
+        <img src="/img/header-photo1x.png" alt="Охтень Аліна Андріївна" fetchpriority="high" />
       </div>
       <div class="header__ceo-info">
         <b>Адвокат Охтень Аліна Андріївна,</b>
@@ -36,19 +36,35 @@ import { faqItems } from "../data/faq";
     </div>
   </Header>
 
-  <ConsultationModal client:load />
+  <ConsultationModal client:idle />
 
   <main class="main">
     <section class="about-us">
-      <div class="about-us__video">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/EDdoPUhglz0"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="about-us__video youtube-facade" data-videoid="EDdoPUhglz0">
+        <img
+          src="https://i.ytimg.com/vi/EDdoPUhglz0/hqdefault.jpg"
+          alt="Відео"
+          loading="lazy"
+        />
+        <button class="youtube-play-btn" aria-label="Відтворити відео">▶</button>
       </div>
+      
+      <script>
+        document.querySelectorAll('.youtube-facade').forEach(el => {
+          el.addEventListener('click', () => {
+            const id = (el as HTMLElement).dataset.videoid;
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+            iframe.width = '560'; iframe.height = '315';
+            iframe.allow = 'autoplay; encrypted-media';
+            iframe.allowFullscreen = true;
+            iframe.style.border = '0';
+            el.innerHTML = '';
+            el.appendChild(iframe);
+            el.classList.remove('youtube-facade');
+          });
+        });
+      </script>
       <div class="about-us__description">
         <button class="button modalBtn" id="button_mobile">
           Отримати онлайн консультацію
