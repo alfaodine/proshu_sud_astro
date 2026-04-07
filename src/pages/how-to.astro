@@ -1,0 +1,113 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Proshu sud - Як це працює">
+  <main class="main">
+    <section class="how-it-works">
+      <h1 class="how-it-works__title">Як це працює</h1>
+      <div class="how-it-works__instruction">
+        <div class="how-it-works__block">
+          <div class="block__title">01</div>
+          <div class="block__info" id="num01">
+            <img src="/img/how-it-works/01.svg" alt="icon" />
+            <p>Контакт</p>
+            <p>
+              Глибокий аналіз та стратегія. Ретельно вивчаю ваші документи та
+              матеріали справи, щоб розробити індивідуальний план дій із чіткою
+              оцінкою перспектив.
+            </p>
+          </div>
+        </div>
+        <div class="how-it-works__block">
+          <div class="block__title">02</div>
+          <div class="block__info" id="num02">
+            <img src="/img/how-it-works/02.svg" alt="icon" />
+            <p>Взаємодія</p>
+            <p>
+              Повний юридичний супровід. Беру на себе всю комунікацію з
+              опонентами, підготовку процесуальних документів та представництво
+              вашої позиції в судах усіх інстанцій.
+            </p>
+          </div>
+        </div>
+        <div class="how-it-works__block">
+          <div class="block__title">03</div>
+          <div class="block__info" id="num03">
+            <img src="/img/how-it-works/03.svg" alt="icon" />
+            <p>Результат</p>
+            <p>
+              Повний юридичний супровід. Беру на себе всю комунікацію з
+              опонентами, підготовку процесуальних документів та представництво
+              вашої позиції в судах усіх інстанцій.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="consultation">
+      <div class="consultation__info">
+        <p class="title">Отримайте онлайн консультацію</p>
+        <ul class="price__list">
+          <li>Ознайомимося ближче з вашим питанням</li>
+          <li>Знайдемо можливі шляхи вирішення питання в найкоротший термін</li>
+          <li>За потреби дамо оцінку вартості подальших робіт</li>
+          <li>
+            Вартість консультації <span>1000 грн</span>. Якщо після консультації
+            знадобляться додаткові послуги, ця сума буде включена у вартість
+            послуги.
+          </li>
+        </ul>
+        <p class="text" style="margin-top: 20px;">
+          Залиште заявку або напишіть у месенджер (Viber, Telegram, WhatsApp) — розберемо вашу ситуацію і визначимо наступні кроки.
+        </p>
+      </div>
+      <div class="consultation__form">
+        <form id="form_make_online_appointment_page_how_to">
+          <label
+            >Ваше ім'я<input
+              id="your_name"
+              name="name"
+              type="text"
+              required
+              placeholder="Іван"
+            /></label
+          >
+          <label
+            >Ваш номер телефону<input
+              id="your_number"
+              type="text"
+              name="phone"
+              placeholder="0508855888"
+              pattern="\d+"
+              maxlength="14"
+              minlength="10"
+              required
+            /></label
+          >
+          <label
+            >Опишіть суть проблеми<textarea
+              id="your_text"
+              required
+              name="comment"
+              cols="40"
+              rows="5"></textarea></label
+          >
+          <input
+            type="file"
+            accept="application/pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/*"
+            id="upload"
+            name="file"
+            style="display: none"
+          />
+          <label id="upload-lable" for="upload" data-after="Прикріпити файл"
+          ></label>
+          <button id="invoice" name="submit_button" type="submit"
+            >Надіслати</button
+          >
+        </form>
+      </div>
+    </section>
+  </main>
+</PageLayout>

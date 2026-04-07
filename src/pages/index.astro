@@ -1,11 +1,231 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/astro/Header.astro";
+import Footer from "../components/astro/Footer.astro";
+import ServiceCard from "../components/astro/ServiceCard.astro";
+import Carousel from "../components/react/Carousel";
+import Accordion from "../components/react/Accordion";
+import ConsultationForm from "../components/react/ConsultationForm";
+import ConsultationModal from "../components/react/ConsultationModal";
+import { services } from "../data/services";
+import { testimonials } from "../data/testimonials";
+import { faqItems } from "../data/faq";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Proshu sud">
+  <Header>
+    <div class="header__main">
+      <div class="header__description">
+        <h1>
+          Професійна допомога у цивільних, кримінальних та господарських справах
+        </h1>
+        <p class="header__text">
+          Повертаємо спокій та впевненість у завтрашньому дні.
+        </p>
+        <button class="button modalBtn" id="button_desktop">
+          Отримати онлайн консультацію
+        </button>
+      </div>
+      <div class="header__photo">
+        <img src="/img/header-photo1x.png" alt="Охтень Аліна Андріївна" />
+      </div>
+      <div class="header__ceo-info">
+        <b>Адвокат Охтень Аліна Андріївна,</b>
+        <p>20+ років роботи у судовій системі</p>
+      </div>
+    </div>
+  </Header>
+
+  <ConsultationModal client:load />
+
+  <main class="main">
+    <section class="about-us">
+      <div class="about-us__video">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/EDdoPUhglz0"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="about-us__description">
+        <button class="button modalBtn" id="button_mobile">
+          Отримати онлайн консультацію
+        </button>
+        <p class="about-us__title title">У юридичних справах немає дрібниць.</p>
+        <p class="about-us__text">
+          Кожен кейс потребує не лише глибоких знань закону, а й стратегічного
+          мислення. Я пропоную індивідуальний підхід, де чесність та
+          конфіденційність є основою співпраці.
+        </p>
+        <ul class="price__list">
+          <li>20+ років успішної практики.</li>
+          <li>95% справ вирішено на користь клієнта.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="our-services">
+      <p class="our-services__title title">Напрямки та рішення</p>
+      <div class="our-services__list">
+        {
+          services.map((service) => (
+            <ServiceCard
+              iconId={service.iconId}
+              title={service.title}
+              href={`/services/${service.slug}`}
+            />
+          ))
+        }
+        <div
+          class="service-card service-card_additional service-card__description"
+        >
+          <p>
+            *Якщо Ви не знайшли в переліку необхідну вам послугу, закажіть
+            консультацію спеціаліста. Вивчивши ситуацію фахівцем буде винайдено
+            спосіб захисту Ваших порушених прав.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="price">
+      <div class="price__description">
+        <p class="price__title title">Етапи роботи:</p>
+        <p>
+          Ви отримаєте індивідуальний підхід та професійний супровід на кожному
+          етапі. Я особисто веду кожну справу від першої консультації до
+          фінального результату:
+        </p>
+        <ul class="price__list">
+          <li>Консультація: Вивчаємо документи та обговорюємо деталі.</li>
+          <li>Стратегія: Розробляємо план дій та оцінюємо шанси.</li>
+          <li>Договір: Офіційно закріплюємо умови співпраці.</li>
+          <li>Договір: Офіційно закріплюємо умови співпраці.</li>
+        </ul>
+      </div>
+      <div class="price__img"></div>
+    </section>
+
+    <section class="pros">
+      <div class="pros__img"></div>
+      <div class="pros__description">
+        <p class="pros__title title">Чому обирають саме мене?</p>
+        <p>
+          Звернення до мене — це надійний захист ваших інтересів у будь-якій
+          ситуації:
+        </p>
+        <div class="pros__cards">
+          <div class="service-card-pros">
+            <div class="service-card-pros__icon">
+              <svg class="icon"
+                ><use xlink:href="/img/sprite.svg#pros-qualification"
+                ></use></svg
+              >
+            </div>
+            <div class="service-card-pros__text">
+              <p>
+                Чесна оцінка ризиків. Я не обіцяю неможливого, але гарантую
+                максимум зусиль для перемоги.
+              </p>
+            </div>
+          </div>
+          <div class="service-card-pros">
+            <div class="service-card-pros__icon">
+              <svg class="icon"
+                ><use xlink:href="/img/sprite.svg#pros-full-info"></use></svg
+              >
+            </div>
+            <div class="service-card-pros__text">
+              <p>
+                Конфіденційність. Ваша інформація захищена адвокатською
+                таємницею.
+              </p>
+            </div>
+          </div>
+          <div class="service-card-pros">
+            <div class="service-card-pros__icon">
+              <svg class="icon"
+                ><use xlink:href="/img/sprite.svg#pros-time"></use></svg
+              >
+            </div>
+            <div class="service-card-pros__text">
+              <p>
+                Оперативність. Завжди на зв’язку та вчасно реагую на зміни у
+                справі.
+              </p>
+            </div>
+          </div>
+          <div class="service-card-pros">
+            <div class="service-card-pros__icon">
+              <svg class="icon"
+                ><use xlink:href="/img/sprite.svg#pros-resposibility"
+                ></use></svg
+              >
+            </div>
+            <div class="service-card-pros__text">
+              <p>
+                Повний супровід. Від підготовки першої заяви до фінального
+                рішення суду.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stats__block">
+        <p class="stats__title">500+</p>
+        <p class="stats__text">успішних судових рішень на користь клієнтів</p>
+      </div>
+      <div class="stats__block">
+        <p class="stats__title">14 <span>сертифікатів</span></p>
+        <p class="stats__text">що підтверджують професійну діяльність</p>
+      </div>
+      <div class="stats__block">
+        <p class="stats__title">20+ років</p>
+        <p class="stats__text">загального стажу юридичної практики</p>
+      </div>
+      <div class="stats__block">
+        <p class="stats__title">10 років</p>
+        <p class="stats__text">досвіду роботи суддею</p>
+      </div>
+    </section>
+
+    <Carousel client:visible testimonials={testimonials} />
+
+    <section class="faq">
+      <Accordion client:visible items={faqItems} />
+      <div class="faq__photo">
+        <img src="/img/faq-photo.png" alt="главый юрист прошу суд" />
+      </div>
+    </section>
+
+    <section class="consultation">
+      <div class="consultation__info">
+        <p class="title">Отримайте онлайн консультацію</p>
+        <ul class="price__list">
+          <li>Ознайомимося ближче з вашим питанням</li>
+          <li>Знайдемо можливі шляхи вирішення питання в найкоротший термін</li>
+          <li>
+            Вартість консультації <span>1000 грн</span>. Якщо після консультації
+            знадобляться додаткові послуги, то ця сума буде включено у вартість
+            послуги.
+          </li>
+        </ul>
+        <p class="text" style="margin-top: 20px;">
+          Залиште заявку або напишіть у месенджер (Viber, Telegram, WhatsApp) — розберемо вашу ситуацію і визначимо наступні кроки.
+        </p>
+      </div>
+      <div class="consultation__form">
+        <ConsultationForm
+          client:visible
+          formId="form_make_online_appointment"
+        />
+      </div>
+    </section>
+  </main>
+  <Footer />
 </Layout>

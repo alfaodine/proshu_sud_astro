@@ -1,0 +1,48 @@
+---
+interface Props {
+  isInnerPage?: boolean;
+}
+
+const { isInnerPage = false } = Astro.props;
+---
+<header class={`header ${isInnerPage ? 'header_page' : ''}`}>
+  <div class="header__top">
+    <a href="/">
+      <svg class="icon logo-icon">
+        <use xlink:href="/img/sprite.svg#logo"></use>
+      </svg>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span class="bar-top"></span>
+      <span class="bar-mid"></span>
+      <span class="bar-bot"></span>
+    </button>
+    <div class="header__menu-bg">
+      <ul class="header__menu">
+        <li class="menu__item">
+          <a class="underline" href="/about-us">Хто ми</a>
+        </li>
+        <li class="menu__item">
+          <a class="underline" href="/how-to">Як це працює</a>
+        </li>
+        <li class="menu__item">
+          <a class="underline" href="/contacts">Контакти</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {!isInnerPage && (
+    <slot />
+  )}
+  {!isInnerPage && <div class="header__bg"></div>}
+</header>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const menuBg = document.querySelector('.header__menu-bg');
+
+  navToggle?.addEventListener('click', () => {
+    navToggle.classList.toggle('opened');
+    menuBg?.classList.toggle('active-menu');
+  });
+</script>

@@ -1,0 +1,18 @@
+// @mixin block_size{
+//     max-width: 1170px;
+//     width: 100%;
+//     margin: 0 auto;
+// }
+@mixin flex_content($content, $items){
+    display: flex;
+    justify-content: $content;
+    align-items: $items;
+}
+@mixin font_style($font_name, $size, $weight, $height){
+    font-family: $font_name;
+    font-style: normal;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $height;
+    color: $color_black;
+}

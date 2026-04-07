@@ -1,0 +1,79 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ConsultationForm from "../../components/react/ConsultationForm";
+import { services } from "../../data/services";
+import type { GetStaticPaths } from "astro";
+import type { ServiceDefinition } from "../../types";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+};
+
+interface Props {
+  service: ServiceDefinition;
+}
+
+const { service }: Props = Astro.props;
+---
+
+<PageLayout title={`Proshu sud - ${service.title}`}>
+  <main class="main">
+    <section class="service-page">
+      <div class="service-page__text">
+        <h1>{service.title}</h1>
+        {
+          service.description.length > 0 ? (
+            service.description.map((p: string) => <p class="text">{p}</p>)
+          ) : (
+            <p class="text">
+              Для отримання детальної інформації щодо цієї послуги, будь ласка,
+              замовте консультацію.
+            </p>
+          )
+        }
+        <!-- <p class="text">
+          Складання позову: <span>{service.price} грн.</span>
+        </p> -->
+        <!-- {service?.includedItems && service.includedItems.length > 0 && (
+          <ul>
+            {service.includedItems.map((item: string) => <li>{item}</li>)}
+          </ul>
+        )}
+        {service.fullServicePrice && (
+          <p class="text">
+            Складання позову + супровід в суд: <span>{service.fullServicePrice} грн.</span>
+          </p>
+        )} -->
+        {
+          service.fullServiceList && service.fullServiceList.length > 0 && (
+            <ul>
+              {service.fullServiceList.map((item: string) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )
+        }
+        <p class="text service-page__text--highlighted">
+          Для первинного аналізу матеріалів замовте консультацію. Якщо після
+          консультації знадобляться додаткові послуги, то вартість консультації
+          включено у вартість послуги.
+        </p>
+      </div>
+
+      <div class="service-page__form">
+        <div class="consultation__form consultation__form--service-page">
+          <p>Консультація</p>
+          <div class="consultation__form">
+            <ConsultationForm
+              client:visible
+              formId="form_make_online_appointment"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</PageLayout>

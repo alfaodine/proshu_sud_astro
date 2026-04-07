@@ -1,0 +1,16 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/astro/Header.astro';
+import Footer from '../components/astro/Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<Layout title={title} bodyId="pages_style">
+  <Header isInnerPage={true} />
+  <slot />
+  <Footer />
+</Layout>

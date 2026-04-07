@@ -1,0 +1,20 @@
+---
+interface Props {
+  iconId: string;
+  title: string;
+  href: string;
+}
+
+const { iconId, title, href } = Astro.props;
+---
+<div class="service-card">
+  <div class="service-card__icon">
+    <svg class="icon">
+      <use xlink:href={`/img/sprite.svg#${iconId}`}></use>
+    </svg>
+  </div>
+  <div class="service-card__description">
+    <p>{title}</p>
+    <a href={href}>Докладніше</a>
+  </div>
+</div>
