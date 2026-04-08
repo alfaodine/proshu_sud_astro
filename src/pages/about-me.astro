@@ -2,7 +2,7 @@
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout title="Proshu sud - Хто ми">
+<PageLayout title="Proshu sud - Про мене">
   <main class="main">
     <section class="who-we-are">
       <div class="who-we-are__description">
@@ -22,10 +22,10 @@ import PageLayout from "../layouts/PageLayout.astro";
           підхід та залізна витримка.
         </p>
       </div>
-      <picture>
-        <source type="image/webp" srcset="/img/about-us/top_photo.webp" />
-        <img src="/img/about-us/top_photo.png" alt="Адвокат Охтень Аліна Андріївна" loading="lazy" decoding="async" />
-      </picture>
+      <img
+        src="/img/about-us/top_photo.png"
+        alt="Адвокат Охтень Аліна Андріївна"
+      />
     </section>
 
     <section class="quote">
@@ -57,21 +57,23 @@ import PageLayout from "../layouts/PageLayout.astro";
     <section class="speciality">
       <picture>
         <source type="image/webp" srcset="/img/about-us/bottom_photo.webp" />
-        <img src="/img/about-us/bottom_photo.png" alt="Спеціалізація адвоката" loading="lazy" decoding="async" />
+        <img
+          src="/img/about-us/bottom_photo.png"
+          alt="Спеціалізація адвоката"
+          loading="lazy"
+          decoding="async"
+        />
       </picture>
       <div class="speciality__description">
         <p>
           Маю вищу юридичну освіту (кваліфікація магістр права). Закінчила
           Одеську національну юридичну академію
         </p>
-        <p>Спеціаліст у сфері:</p>
-        <ul class="speciality__list">
-          <li>сімейного права</li>
-          <li>земельного права</li>
-          <li>цивільного права</li>
-          <li>захисту права власності</li>
-          <li>кримінального права</li>
-        </ul>
+        <p>
+          Я ставлю пріоритетом не лише виграний суд, а й мінімізацію стресу для
+          клієнта. Моя спеціалізація — складні справи, де потрібен нестандартний
+          підхід та залізна витримка.
+        </p>
       </div>
     </section>
 
