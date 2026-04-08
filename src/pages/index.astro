@@ -3,16 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
 import ServiceCard from "../components/astro/ServiceCard.astro";
-import Carousel from "../components/react/Carousel";
-import Accordion from "../components/react/Accordion";
+import Carousel from "../components/astro/Carousel.astro";
+import Accordion from "../components/astro/Accordion.astro";
 import ConsultationForm from "../components/react/ConsultationForm";
-import ConsultationModal from "../components/react/ConsultationModal";
+import ConsultationModal from "../components/astro/ConsultationModal.astro";
 import { services } from "../data/services";
 import { testimonials } from "../data/testimonials";
 import { faqItems } from "../data/faq";
 ---
 
-<Layout title="Proshu sud">
+<Layout title="Proshu sud" preloadHero>
   <Header>
     <div class="header__main">
       <div class="header__description">
@@ -27,7 +27,21 @@ import { faqItems } from "../data/faq";
         </button>
       </div>
       <div class="header__photo">
-        <img src="/img/header-photo1x.png" alt="Охтень Аліна Андріївна" fetchpriority="high" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/img/header-photo0.5x.webp 400w, /img/header-photo0.75x.webp 600w, /img/header-photo1x.webp 800w"
+            sizes="(max-width: 768px) 400px, (max-width: 992px) 600px, 800px"
+          />
+          <img
+            src="/img/header-photo1x.png"
+            srcset="/img/header-photo0.5x.png 400w, /img/header-photo0.75x.png 600w, /img/header-photo1x.png 800w"
+            sizes="(max-width: 768px) 400px, (max-width: 992px) 600px, 800px"
+            alt="Охтень Аліна Андріївна"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="header__ceo-info">
         <b>Адвокат Охтень Аліна Андріївна,</b>
@@ -36,7 +50,7 @@ import { faqItems } from "../data/faq";
     </div>
   </Header>
 
-  <ConsultationModal client:idle />
+  <ConsultationModal />
 
   <main class="main">
     <section class="about-us">
@@ -210,12 +224,15 @@ import { faqItems } from "../data/faq";
       </div>
     </section>
 
-    <Carousel client:visible testimonials={testimonials} />
+    <Carousel testimonials={testimonials} />
 
     <section class="faq">
-      <Accordion client:visible items={faqItems} />
+      <Accordion items={faqItems} />
       <div class="faq__photo">
-        <img src="/img/faq-photo.png" alt="главый юрист прошу суд" />
+        <picture>
+          <source type="image/webp" srcset="/img/faq-photo.webp" />
+          <img src="/img/faq-photo.png" alt="головний юрист прошу суд" loading="lazy" decoding="async" />
+        </picture>
       </div>
     </section>
 

@@ -1,3 +1,4 @@
+@import "fonts";
 @import "mixins";
 @import "vars";
 
@@ -79,17 +80,18 @@ body {
     position: relative;
     height: 100vh;
     padding: 0 calc(50vw - 585px);
-    background: url(/img/bg-figure1x.png);
+    background: url(/img/bg-figure0.5x.webp);
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 47vw -4vh;
 
-    // background-size: cover, cover;
-    // background-origin: border-box, border-box;
-    background-repeat: no-repeat, no-repeat;
-    // background-size: 100vh, 100vh;
-    background-position: 47vw -4vh, 25% 25%;
+    @media (min-width: 769px) {
+        background-image: url(/img/bg-figure0.75x.webp);
+    }
 
-    // background-position-y: 7%, 23%;
-    // background-position-x: -38%, -103%;
+    @media (min-width: 1171px) {
+        background-image: url(/img/bg-figure1x.webp);
+    }
     &__top {
         @include flex_content (space-between, center);
         position: relative;
@@ -578,7 +580,7 @@ button {
     &__img {
         width: 50%;
         height: 28em;
-        background: url(/img/price-block.png) no-repeat;
+        background: url(/img/price-block.webp) no-repeat;
         background-size: contain;
         margin: 3em 0;
     }
@@ -613,7 +615,7 @@ button {
     &__img {
         width: 50%;
         height: 28em;
-        background: url(/img/pros-block.png) no-repeat;
+        background: url(/img/pros-block.webp) no-repeat;
         background-size: contain;
         margin: 5em 0;
     }
@@ -1643,73 +1645,6 @@ button {
     & .title {
         text-align: left;
     }
-}
-
-//----------------Sign up page--------
-.sign_up {
-    & button {
-        width: 13em;
-
-        &:disabled {
-            background: #cccccc;
-        }
-    }
-
-    & a {
-        text-align: center;
-        text-decoration: none;
-        color: $color_black;
-    }
-
-    & input {
-        margin-bottom: 0.6em;
-    }
-}
-
-//--------multiple step form--------
-
-
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-    background-color: #ffdddd;
-}
-
-/* Hide all steps by default: */
-.tab {
-    display: none;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
-
-/* Mark the active step: */
-.step.active {
-    opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-    background-color: #79ccae;
-}
-
-.btn-group {
-    float: left;
-}
-
-#prevBtn {
-    color: $color_red;
-    background: rgb(255, 255, 255);
-    border: 2px solid $color_red;
-    margin-right: 1.5em;
 }
 
 @import "media-quer";

@@ -1,0 +1,33 @@
+---
+---
+
+<div id="modal-container"></div>
+
+<script>
+  let modalLoaded = false;
+
+  document.addEventListener('click', async (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.classList.contains('modalBtn') && !target.closest('.modalBtn')) return;
+
+    if (modalLoaded) {
+      const container = document.getElementById('modal-container');
+      if (container) container.style.display = 'block';
+      return;
+    }
+
+    const container = document.getElementById('modal-container');
+    if (!container) return;
+
+    // Dynamically import React and the modal component
+    const [{ default: React }, { createRoot }, { default: ConsultationModal }] = await Promise.all([
+      import('react'),
+      import('react-dom/client'),
+      import('../react/ConsultationModal'),
+    ]);
+
+    const root = createRoot(container);
+    root.render(React.createElement(ConsultationModal));
+    modalLoaded = true;
+  });
+</script>

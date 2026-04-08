@@ -1,20 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ConsultationForm from './ConsultationForm';
 
 export default function ConsultationModal() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleClick = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target.classList.contains('modalBtn') || target.closest('.modalBtn')) {
-        setIsOpen(true);
-      }
-    };
-
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, []);
+  const [isOpen, setIsOpen] = useState(true);
 
   if (!isOpen) return null;
 

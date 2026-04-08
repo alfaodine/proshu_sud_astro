@@ -1,0 +1,43 @@
+---
+import type { FaqItem } from '../../types';
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq__questions">
+  <p class="title">Часті питання</p>
+  {items.map((item, index) => (
+    <div class="faq__question" data-accordion-item style="cursor: pointer;">
+      <div class="faq__btn">+</div>
+      <p>{item.question}</p>
+      <div class="faq__answer" data-accordion-answer>
+        <p>{item.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll('[data-accordion-item]').forEach((item) => {
+    item.addEventListener('click', () => {
+      const answer = item.querySelector('[data-accordion-answer]') as HTMLElement;
+      if (!answer) return;
+      const isOpen = item.classList.contains('active-answer');
+      // Close all
+      document.querySelectorAll('[data-accordion-item]').forEach((other) => {
+        other.classList.remove('active-answer');
+        const otherAnswer = other.querySelector('[data-accordion-answer]') as HTMLElement;
+        if (otherAnswer) otherAnswer.style.height = '0';
+      });
+      // Open clicked if it was closed
+      if (!isOpen) {
+        item.classList.add('active-answer');
+        answer.style.height = answer.scrollHeight + 35 + 'px';
+      }
+    });
+  });
+</script>

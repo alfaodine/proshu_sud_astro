@@ -9,7 +9,10 @@ import PageLayout from '../layouts/PageLayout.astro';
         <p class="not-found__text">На жаль, такої сторінки не існує. Ймовірно, вона була видалена або введено некоректну адресу.</p>
         <a href="/"><button class="button">Повернутися на головну</button></a>
       </div>
-      <img src="/img/not_found.png" alt="Not found" />
+      <picture>
+        <source type="image/webp" srcset="/img/not_found.webp" />
+        <img src="/img/not_found.png" alt="Not found" loading="lazy" decoding="async" />
+      </picture>
     </section>
   </main>
 </PageLayout>
