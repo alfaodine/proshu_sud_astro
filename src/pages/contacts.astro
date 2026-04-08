@@ -1,24 +1,23 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import TgIcon from '../assets/icons/tg-icon.svg';
-import WhatsupIcon from '../assets/icons/whatsup-icon.svg';
-import ViberIcon from '../assets/icons/viber-icon.svg';
-import EmailIcon from '../assets/icons/email-icon.svg';
-import FbIcon from '../assets/icons/fb-icon.svg';
+import PageLayout from "../layouts/PageLayout.astro";
+import TgIcon from "../assets/icons/tg-icon.svg";
+import WhatsupIcon from "../assets/icons/whatsup-icon.svg";
+import ViberIcon from "../assets/icons/viber-icon.svg";
+import EmailIcon from "../assets/icons/email-icon.svg";
+import FbIcon from "../assets/icons/fb-icon.svg";
+import TikTokIcon from "../assets/icons/tiktok.svg";
+import ConsultationForm from "../components/react/ConsultationForm.tsx";
 ---
+
 <PageLayout title="Proshu sud - Контакти">
   <main class="main">
     <section class="contacts">
       <div class="contacts__form">
         <p class="title">Отримайте онлайн консультацію</p>
-        <form id="form_make_online_appointment_contacts_page">
-          <label>Ваше ім'я<input id="your_name" name="name" type="text" required placeholder="Іван" /></label>
-          <label>Ваш номер телефону<input id="your_number" type="text" name="phone" placeholder="0508855888" pattern="\d+" maxlength="14" minlength="10" required /></label>
-          <label>Опишіть суть проблеми<textarea id="your_text" required name="comment" cols="40" rows="5"></textarea></label>
-          <input type="file" accept="application/pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/*" id="upload" name="file" style="display: none" />
-          <label id="upload-lable" for="upload" data-after="Прикріпити файл"></label>
-          <button id="invoice" name="submit_button" type="submit">Надіслати</button>
-        </form>
+        <ConsultationForm
+          client:visible
+          formId="form_make_online_appointment"
+        />
       </div>
 
       <div class="contacts__social">
@@ -26,11 +25,21 @@ import FbIcon from '../assets/icons/fb-icon.svg';
         <ul>
           <li>
             <EmailIcon class="icon" />
-            <a href="mailto:ProshuSud@gmail.com" target="_blank">ProshuSud@gmail.com</a>
+            <a href="mailto:ProshuSud@gmail.com" target="_blank"
+              >ProshuSud@gmail.com</a
+            >
           </li>
           <li>
             <FbIcon class="icon" />
-            <a href="https://www.facebook.com/mirpravaodessa" target="_blank">ProshuSud</a>
+            <a href="https://www.facebook.com/mirpravaodessa" target="_blank"
+              >Facebook</a
+            >
+          </li>
+          <li>
+            <TikTokIcon class="icon" />
+            <a href="https://www.tiktok.com/@mir_prava" target="_blank"
+              >TikTok</a
+            >
           </li>
           <li>
             <a href="https://telegram.me/ohten_alina" target="_blank">
@@ -39,7 +48,10 @@ import FbIcon from '../assets/icons/fb-icon.svg';
             <a href="viber://pa?number=380505064272" target="_blank">
               <ViberIcon class="icon" />
             </a>
-            <a href="https://api.whatsapp.com/send?phone=380505064272" target="_blank">
+            <a
+              href="https://api.whatsapp.com/send?phone=380505064272"
+              target="_blank"
+            >
               <WhatsupIcon class="icon" />
             </a>
           </li>

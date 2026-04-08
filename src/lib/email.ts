@@ -1,14 +1,5 @@
 const EMAIL_ENDPOINT = 'https://xu5va381hj.execute-api.us-east-1.amazonaws.com/sendEmail';
 
-const toBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-};
-
 export async function sendEmail(data: {
   name: string;
   phone: string;
