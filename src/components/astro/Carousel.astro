@@ -1,0 +1,90 @@
+---
+import type { Testimonial } from '../../types';
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<section class="reviews">
+  <div class="reviews__nav">
+    <p class="reviews__title">Відгуки клієнтів</p>
+    <div class="reviews__btns">
+      <div class="reviews__btn prev-btn" data-carousel-prev style="cursor: pointer;">&#60;</div>
+      <div class="reviews__btn next-btn" data-carousel-next style="cursor: pointer;">&#62;</div>
+    </div>
+  </div>
+  <div class="reviews__viewport" data-carousel-viewport>
+    <div class="reviews__track" data-carousel-track>
+      {testimonials.map((t) => (
+        <div class="reviews__slide">
+          <p class="reviews__block-title">{t.title}</p>
+          <p class="reviews__block-text">"{t.text}"</p>
+          <p class="reviews__block-info">{t.author}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews__viewport {
+    overflow: hidden;
+    cursor: grab;
+  }
+  .reviews__track {
+    display: flex;
+  }
+  .reviews__slide {
+    flex: 0 0 370px;
+    min-width: 0;
+    margin-right: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    scroll-snap-align: start;
+  }
+  @media (max-width: 768px) {
+    .reviews__slide {
+      flex: 0 0 280px;
+      margin-right: 15px;
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  const viewport = document.querySelector('[data-carousel-viewport]') as HTMLElement;
+  const track = document.querySelector('[data-carousel-track]') as HTMLElement;
+  const prevBtn = document.querySelector('[data-carousel-prev]');
+  const nextBtn = document.querySelector('[data-carousel-next]');
+
+  if (viewport && track) {
+    const slideWidth = 400; // 370px + 30px margin
+
+    prevBtn?.addEventListener('click', () => {
+      viewport.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      viewport.scrollBy({ left: slideWidth, behavior: 'smooth' });
+    });
+
+    // Loop: when reaching the end, jump back
+    let isScrolling = false;
+    viewport.addEventListener('scroll', () => {
+      if (isScrolling) return;
+      const maxScroll = track.scrollWidth - viewport.clientWidth;
+      if (viewport.scrollLeft >= maxScroll - 10) {
+        isScrolling = true;
+        setTimeout(() => {
+          viewport.scrollTo({ left: 0, behavior: 'smooth' });
+          isScrolling = false;
+        }, 300);
+      }
+    });
+  }
+</script>

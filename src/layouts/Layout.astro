@@ -3,23 +3,39 @@ import '../styles/global.scss';
 
 interface Props {
   title: string;
+  description?: string;
   bodyId?: string;
   bodyClass?: string;
+  preloadHero?: boolean;
 }
 
-const { title, bodyId, bodyClass } = Astro.props;
+const {
+  title,
+  description = 'Адвокат Охтень Аліна Андріївна — професійна допомога у цивільних, кримінальних та господарських справах. 20+ років досвіду, 500+ успішних справ.',
+  bodyId,
+  bodyClass,
+  preloadHero = false,
+} = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Prata&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Prata&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Prata&display=swap" rel="stylesheet" /></noscript>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="uk_UA" />
+  {preloadHero && (
+    <link rel="preload" as="image" type="image/webp"
+      imagesrcset="/img/header-photo0.5x.webp 400w, /img/header-photo0.75x.webp 600w, /img/header-photo1x.webp 800w"
+      imagesizes="(max-width: 768px) 400px, (max-width: 992px) 600px, 800px"
+    />
+  )}
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/open-sans-400-cyrillic.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/prata-400-cyrillic.woff2" />
+  <link rel="dns-prefetch" href="https://i.ytimg.com" />
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
   <title>{title}</title>
 </head>
