@@ -27,7 +27,7 @@ import { faqItems } from "../data/faq";
         </button>
       </div>
       <div class="header__photo">
-        <img src="/img/header-photo1x.png" alt="Охтень Аліна Андріївна" fetchpriority="high" />
+        <img src="/img/header-photo1x.webp" alt="Охтень Аліна Андріївна" fetchpriority="high" />
       </div>
       <div class="header__ceo-info">
         <b>Адвокат Охтень Аліна Андріївна,</b>
@@ -59,6 +59,7 @@ import { faqItems } from "../data/faq";
             iframe.allow = 'autoplay; encrypted-media';
             iframe.allowFullscreen = true;
             iframe.style.border = '0';
+            iframe.style.aspectRatio = '16/9';
             el.innerHTML = '';
             el.appendChild(iframe);
             el.classList.remove('youtube-facade');
@@ -210,12 +211,12 @@ import { faqItems } from "../data/faq";
       </div>
     </section>
 
-    <Carousel client:visible testimonials={testimonials} />
+    <Carousel client:idle testimonials={testimonials} />
 
     <section class="faq">
-      <Accordion client:visible items={faqItems} />
+      <Accordion client:idle items={faqItems} />
       <div class="faq__photo">
-        <img src="/img/faq-photo.png" alt="главый юрист прошу суд" />
+        <img src="/img/faq-photo.webp" alt="главый юрист прошу суд" />
       </div>
     </section>
 
