@@ -25,6 +25,7 @@ interface Props {
 export default function ConsultationForm({ formId, className }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const {
     register,
@@ -47,6 +48,7 @@ export default function ConsultationForm({ formId, className }: Props) {
       setShowSuccess(true);
     } catch (e) {
       console.error("Failed to send email:", e);
+      setShowError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -98,6 +100,21 @@ export default function ConsultationForm({ formId, className }: Props) {
               </span>
               <div className="model-content-info" style={{ padding: "5%" }}>
                 <p>Дякуємо! Ми скоро з Вами зв'яжемось.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showError && (
+        <div className="modal" style={{ display: "block" }}>
+          <div className="modal-content">
+            <div className="modal-body">
+              <span className="close close-info" onClick={() => setShowError(false)}>
+                &times;
+              </span>
+              <div className="model-content-info" style={{ padding: "5%" }}>
+                <p>Виникла помилка при надсиланні повідомлення. Спробуйте ще раз.</p>
               </div>
             </div>
           </div>
