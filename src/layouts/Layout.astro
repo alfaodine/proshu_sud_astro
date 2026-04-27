@@ -1,5 +1,5 @@
 ---
-import '../styles/global.scss';
+import "../styles/global.scss";
 
 interface Props {
   title: string;
@@ -11,38 +11,76 @@ interface Props {
 
 const {
   title,
-  description = 'Адвокат Охтень Аліна Андріївна — професійна допомога у цивільних, кримінальних та господарських справах. 20+ років досвіду, 500+ успішних справ.',
+  description = "Адвокат Охтень Аліна Андріївна — професійна допомога у цивільних, кримінальних та господарських справах. 20+ років досвіду, 500+ успішних справ.",
   bodyId,
   bodyClass,
   preloadHero = false,
 } = Astro.props;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={description} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="uk_UA" />
-  {preloadHero && (
-    <link rel="preload" as="image" type="image/webp"
-      imagesrcset="/img/header-photo0.5x.webp 400w, /img/header-photo0.75x.webp 600w, /img/header-photo1x.webp 800w"
-      imagesizes="(max-width: 768px) 400px, (max-width: 992px) 600px, 800px"
+  <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-M5MPVT2K");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uk_UA" />
+    {
+      preloadHero && (
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          imagesrcset="/img/header-photo0.5x.webp 400w, /img/header-photo0.75x.webp 600w, /img/header-photo1x.webp 800w"
+          imagesizes="(max-width: 768px) 400px, (max-width: 992px) 600px, 800px"
+        />
+      )
+    }
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/open-sans-400-cyrillic.woff2"
     />
-  )}
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/open-sans-400-cyrillic.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/prata-400-cyrillic.woff2" />
-  <link rel="dns-prefetch" href="https://i.ytimg.com" />
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-  <title>{title}</title>
-</head>
-<body id={bodyId} class={bodyClass}>
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7MKRK76" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <slot />
-</body>
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/prata-400-cyrillic.woff2"
+    />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body id={bodyId} class={bodyClass}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-M5MPVT2K"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+    <slot />
+  </body>
 </html>
