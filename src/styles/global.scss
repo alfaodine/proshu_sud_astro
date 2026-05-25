@@ -231,8 +231,36 @@ body {
     &__ceo-info {
         position: absolute;
         width: 20%;
-        bottom: 100px;
+        bottom: 130px;
         right: 50%;
+    }
+
+    &__hero-social {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 12px;
+
+        & a {
+            display: flex;
+            color: $color_black;
+            transition: opacity 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+                color: $color_red;
+            }
+
+            &::after {
+                display: none !important;
+            }
+        }
+
+        & .icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
     }
 
     &__ceo-info:first-child {
@@ -1646,5 +1674,180 @@ button {
         text-align: left;
     }
 }
+
+// --------- topbar ----------
+
+.topbar {
+    @include flex_content(space-between, center);
+    margin: 0 calc(585px - 50vw);
+    padding: 8px calc(50vw - 585px);
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    position: relative;
+    z-index: 5;
+
+    &__left {
+        position: relative;
+    }
+
+    &__addr-btn {
+        @include flex_content(flex-start, center);
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        @include font_style(Open Sans, 14px, 700, 20px);
+        color: $color_black;
+        padding: 4px 0;
+
+        &:active {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+
+    &__addr-icon {
+        width: 16px;
+        height: 16px;
+        color: $color_red;
+        flex-shrink: 0;
+    }
+
+    &__chevron {
+        width: 14px;
+        height: 14px;
+        transition: transform 0.3s ease;
+        color: $color_black;
+
+        &.rotated {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        background: rgb(255, 255, 255);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        padding: 14px 16px;
+        width: 310px;
+        @include flex_content(flex-start, flex-start);
+        gap: 8px;
+        @include font_style(Open Sans, 14px, 400, 22px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        z-index: 20;
+
+        &.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        &-pin {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: $color_red;
+        }
+    }
+
+    &__social {
+        display: none;
+        gap: 14px;
+
+        & a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color_black;
+            opacity: 0.55;
+            transition: opacity 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+                color: $color_red;
+            }
+
+            &::after {
+                display: none !important;
+            }
+        }
+
+        & .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+    }
+
+    &__map-link {
+        color: $color_black;
+        text-decoration: none;
+
+        &:hover {
+            color: $color_red;
+            text-decoration: underline;
+        }
+
+        &::after {
+            display: none !important;
+        }
+    }
+
+    &__right {
+        @include flex_content(flex-end, center);
+        gap: 12px;
+    }
+
+    &__phone-btn {
+        width: 38px;
+        height: 38px;
+        background: $color_red;
+        border-radius: 50%;
+        @include flex_content(center, center);
+        flex-shrink: 0;
+        animation: phone-pulse 2.5s ease-out infinite;
+
+        & svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__phone-link {
+        @include font_style(Open Sans, 18px, 700, 26px);
+        color: $color_black;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $color_red;
+        }
+
+        &::after {
+            display: none !important;
+        }
+    }
+}
+
+@keyframes phone-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(197, 35, 45, 0.65);
+    }
+    65% {
+        box-shadow: 0 0 0 14px rgba(197, 35, 45, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(197, 35, 45, 0);
+    }
+}
+
+// ---------------------------
 
 @import "media-quer";

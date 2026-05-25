@@ -17,6 +17,10 @@
     .personal{
         padding: 3em 10px 1em;
     }
+    .topbar {
+        margin: 0 -10px;
+        padding: 8px 10px;
+    }
 }
 @media (max-width: 1170px) and (min-width: 993px) {
     .button { padding: 1em 1em; }
@@ -126,7 +130,7 @@
     .stats__title span { font-size: 22px; }
 }
 @media (max-width: 992px) and (min-width: 416px) {
-    .header__ceo-info { bottom: 100px; }
+    .header__ceo-info { bottom: 130px; }
 }
 
 @media (max-width: 768px){
@@ -353,6 +357,32 @@
         }
     }
 
+    .topbar {
+        margin: 0;
+        padding: 6px 12px;
+        &__social {
+            display: none;
+        }
+        &__addr-btn {
+            font-size: 12px;
+            gap: 4px;
+        }
+        &__phone-btn {
+            width: 32px;
+            height: 32px;
+            & svg {
+                width: 15px;
+                height: 15px;
+            }
+        }
+        &__phone-link {
+            font-size: 15px;
+        }
+        &__dropdown {
+            width: calc(100vw - 24px);
+            font-size: 13px;
+        }
+    }
     .payment, .not-found{
         align-items: center;
         &__info{
