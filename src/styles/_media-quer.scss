@@ -130,7 +130,7 @@
     .stats__title span { font-size: 22px; }
 }
 @media (max-width: 992px) and (min-width: 416px) {
-    .header__ceo-info { bottom: 100px; }
+    .header__ceo-info { bottom: 130px; }
 }
 
 @media (max-width: 768px){
@@ -360,6 +360,9 @@
     .topbar {
         margin: 0;
         padding: 6px 12px;
+        &__social {
+            display: none;
+        }
         &__addr-btn {
             font-size: 12px;
             gap: 4px;

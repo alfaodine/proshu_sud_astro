@@ -231,8 +231,36 @@ body {
     &__ceo-info {
         position: absolute;
         width: 20%;
-        bottom: 100px;
+        bottom: 130px;
         right: 50%;
+    }
+
+    &__hero-social {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 12px;
+
+        & a {
+            display: flex;
+            color: $color_black;
+            transition: opacity 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+                color: $color_red;
+            }
+
+            &::after {
+                display: none !important;
+            }
+        }
+
+        & .icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
     }
 
     &__ceo-info:first-child {
@@ -1726,6 +1754,35 @@ button {
             flex-shrink: 0;
             margin-top: 3px;
             color: $color_red;
+        }
+    }
+
+    &__social {
+        display: none;
+        gap: 14px;
+
+        & a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color_black;
+            opacity: 0.55;
+            transition: opacity 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+                color: $color_red;
+            }
+
+            &::after {
+                display: none !important;
+            }
+        }
+
+        & .icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
     }
 
