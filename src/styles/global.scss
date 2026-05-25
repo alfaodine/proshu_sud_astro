@@ -1729,6 +1729,20 @@ button {
         }
     }
 
+    &__map-link {
+        color: $color_black;
+        text-decoration: none;
+
+        &:hover {
+            color: $color_red;
+            text-decoration: underline;
+        }
+
+        &::after {
+            display: none !important;
+        }
+    }
+
     &__right {
         @include flex_content(flex-end, center);
         gap: 12px;
